@@ -2,9 +2,11 @@
 packer build --only=virtualbox-iso packer.json
 
 ### Bring up vagrant box
+```
 vagrant box add -n vs2015community ./<path to packer output>
 vagrant up
 vagrant reload
+```
 
 ### Manual steps
 * Install C:\tmp\pywin32.exe
