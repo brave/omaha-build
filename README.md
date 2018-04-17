@@ -1,5 +1,8 @@
+### Build vs2015community box
+packer build --only=virtualbox-iso packer.json
+
 ### Bring up vagrant box
-vagrant box add -n vs2015community https://<vagrant_box_url>
+vagrant box add -n vs2015community ./<path to packer output>
 vagrant up
 vagrant reload
 
