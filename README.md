@@ -1,3 +1,5 @@
+WIP, this may not work for you currently.
+
 ### Build vs2015community box
 packer build --only=virtualbox-iso packer.json
 
