@@ -114,7 +114,7 @@
       {
         "type": "file",
         "source": "vagrant/vs_2015.xml",
-        "destination": "/vs_2015.xml"
+        "destination": "C:/Windows/Temp/vs_2015.xml"
       },
       {
         "type": "shell",

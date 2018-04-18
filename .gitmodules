@@ -1,6 +1,6 @@
 [submodule "omaha"]
 	path = omaha
-	url = https://github.com/Crystalnix/omaha.git
+	url = https://github.com/RyanJarv/omaha.git
 [submodule "packer-windows"]
 	path = packer-windows
 	url = https://github.com/joefitzgerald/packer-windows.git
