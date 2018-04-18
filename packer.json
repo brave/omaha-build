@@ -21,7 +21,8 @@
           "./packer-windows/scripts/fixnetwork.ps1",
           "./packer-windows/scripts/microsoft-updates.bat",
           "./packer-windows/scripts/win-updates.ps1",
-          "./packer-windows/scripts/openssh.ps1"
+          "./packer-windows/scripts/openssh.ps1",
+          "./vagrant/openssh-enable.ps1"
         ],
         "vmx_data": {
           "RemoteDisplay.vnc.enabled": "false",
@@ -49,7 +50,8 @@
           "./packer-windows/scripts/fixnetwork.ps1",
           "./packer-windows/scripts/microsoft-updates.bat",
           "./packer-windows/scripts/win-updates.ps1",
-          "./packer-windows/scripts/openssh.ps1"
+          "./packer-windows/scripts/openssh.ps1",
+          "./vagrant/openssh-enable.ps1"
         ],
         "vboxmanage": [
           [
@@ -84,7 +86,8 @@
           "./packer-windows/scripts/fixnetwork.ps1",
           "./packer-windows/scripts/microsoft-updates.bat",
           "./packer-windows/scripts/win-updates.ps1",
-          "./packer-windows/scripts/openssh.ps1"
+          "./packer-windows/scripts/openssh.ps1",
+          "./vagrant/openssh-enable.ps1"
         ],
         "prlctl": [
           [
@@ -120,13 +123,25 @@
         "type": "shell",
         "remote_path": "/tmp/script.bat",
         "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
+	"expect_disconnect": true,
         "scripts": [
           "./packer-windows/scripts/vm-guest-tools.bat",
           "./packer-windows/scripts/vagrant-ssh.bat",
           "./packer-windows/scripts/disable-auto-logon.bat",
           "./packer-windows/scripts/enable-rdp.bat",
           "./packer-windows/scripts/compile-dotnet-assemblies.bat",
-          "./vagrant/visual_studio2015.cmd",
+          "./vagrant/visual_studio2015.cmd"
+        ]
+      },
+      {
+        "type": "windows-restart"
+      },
+      {
+        "type": "shell",
+        "remote_path": "/tmp/script.bat",
+        "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
+        "scripts": [
+          "./vagrant/openssh-disable.bat",
           "./packer-windows/scripts/compact.bat"
         ]
       }
