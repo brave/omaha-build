@@ -5,4 +5,5 @@ cd \tmp
 
 powershell -ExecutionPolicy Bypass -Command "choco install visualstudio2015community -y -packageParameters '--AdminFile C:\Windows\Temp\vs_2015.xml' --execution-timeout 14400"
 powershell -ExecutionPolicy Bypass -Command "Enable-WindowsOptionalFeature -Online -FeatureName 'NetFx3' -NoRestart"
+shutdown /r /t 0
 exit 0

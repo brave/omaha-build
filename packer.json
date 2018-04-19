@@ -134,9 +134,6 @@
         ]
       },
       {
-        "type": "windows-restart"
-      },
-      {
         "type": "shell",
         "remote_path": "/tmp/script.bat",
         "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
