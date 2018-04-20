@@ -22,7 +22,7 @@
           "./packer-windows/scripts/microsoft-updates.bat",
           "./packer-windows/scripts/win-updates.ps1",
           "./packer-windows/scripts/openssh.ps1",
-          "./vagrant/openssh-enable.ps1"
+          "./vagrant/enable-services.ps1"
         ],
         "vmx_data": {
           "RemoteDisplay.vnc.enabled": "false",
@@ -51,7 +51,7 @@
           "./packer-windows/scripts/microsoft-updates.bat",
           "./packer-windows/scripts/win-updates.ps1",
           "./packer-windows/scripts/openssh.ps1",
-          "./vagrant/openssh-enable.ps1"
+          "./vagrant/enable-services.ps1"
         ],
         "vboxmanage": [
           [
@@ -135,10 +135,9 @@
       },
       {
         "type": "shell",
-        "remote_path": "/tmp/script.bat",
-        "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
+        "remote_path": "/tmp/script_cleanup.bat",
+        "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script_cleanup.bat",
         "scripts": [
-          "./vagrant/openssh-disable.bat",
           "./packer-windows/scripts/compact.bat"
         ]
       }
