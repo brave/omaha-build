@@ -1,5 +1,7 @@
 WIP, this may not work for you currently.
 
+Note: You will need packer >= 1.2.3 to avoid an issue where imported vagrant box's are empty
+
 ### Build vs2015community box
 packer build --only=virtualbox-iso packer.json
 
