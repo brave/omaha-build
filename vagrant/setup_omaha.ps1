@@ -6,24 +6,25 @@ cd \tmp
 
 $protobuf_ver="3.5.1"
 $Env:MSSdk = "C:\Program Files (x86)\Microsoft SDKs\Windows\v8.1A\"
+choco install -y golang
 choco install -y sysinternals
 choco install -y curl 
 choco install -y sysinternals
 
 curl.exe -L -o wix.exe https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311.exe 
-curl.exe -o python.msi https://www.python.org/ftp/python/2.4.4/python-2.4.4.msi
-curl.exe -o pywin32.exe https://versaweb.dl.sourceforge.net/project/pywin32/pywin32/Build216/pywin32-216.win32-py2.4.exe
+curl.exe -L -o python.msi https://www.python.org/ftp/python/2.4.4/python-2.4.4.msi
+curl.exe -L -o pywin32.exe https://versaweb.dl.sourceforge.net/project/pywin32/pywin32/Build216/pywin32-216.win32-py2.4.exe
 curl.exe -L -o scons.exe https://astuteinternet.dl.sourceforge.net/project/scons/scons/1.3.1/scons-1.3.1.win32.exe
-curl.exe -o setup_tools.tar.gz https://pypi.python.org/packages/source/s/setuptools/setuptools-0.9.6.tar.gz
-curl.exe -o wtl.zip https://phoenixnap.dl.sourceforge.net/project/wtl/WTL%2010/WTL%2010.0.7336/WTL10_7336.zip
-curl.exe -o atlserver.zip https://codeplexarchive.blob.core.windows.net/archive/projects/AtlServer/AtlServer.zip
-curl.exe -o swtoolkit.zip https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/swtoolkit/swtoolkit.0.9.1.zip
+curl.exe -L -o setuptools-0.9.6.tar.gz https://pypi.python.org/packages/source/s/setuptools/setuptools-0.9.6.tar.gz
+curl.exe -L -o wtl.zip https://phoenixnap.dl.sourceforge.net/project/wtl/WTL%2010/WTL%2010.0.7336/WTL10_7336.zip
+curl.exe -L -o atlserver.zip https://codeplexarchive.blob.core.windows.net/archive/projects/AtlServer/AtlServer.zip
+curl.exe -L -o swtoolkit.zip https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/swtoolkit/swtoolkit.0.9.1.zip
 
 curl.exe -L -o protobuf.zip "https://github.com/google/protobuf/releases/download/v3.5.1/protobuf-cpp-${protobuf_ver}.zip"
 curl.exe -L -o protoc.zip "https://github.com/google/protobuf/releases/download/v3.5.1/protoc-${protobuf_ver}-win32.zip"
 
 Expand-Archive -Force .\protobuf.zip
-cp -Force .\protobuf\protobuf-${protobuf_ver}\src \protobuf\src
+cp -recurse .\protobuf\protobuf-${protobuf_ver}\src\ C:\protobuf\
 
 Expand-Archive -Force .\protoc.zip -DestinationPath C:\protobuf\
 
@@ -41,9 +42,9 @@ Expand-Archive -Force .\atlserver\sourceCode\sourceCode.zip -DestinationPath \at
 # C:\Python24\Scripts\easy_install.exe .\scons.exe --standard-lib
 
 
-Enable-WindowsOptionalFeature -Online -FeatureName "NetFx3"
+Enable-WindowsOptionalFeature -Online -FeatureName "NetFx3" -All
 Start-Process -NoNewWindow -Wait -FilePath .\wix.exe -ArgumentList  "/l*v", "wix.log", "/passive"
 
 Expand-Archive -Force .\wtl.zip -DestinationPath C:\wtl
 Expand-Archive -Force .\atlserver.zip -DestinationPath C:\atl
-Expand-Archive -Force .\swtoolkit.zip -DestinationPath C:\swtoolkit
+Expand-Archive -Force .\swtoolkit.zip -DestinationPath C:\
