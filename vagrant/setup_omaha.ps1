@@ -9,7 +9,6 @@ $Env:MSSdk = "C:\Program Files (x86)\Microsoft SDKs\Windows\v8.1A\"
 choco install -y golang
 choco install -y sysinternals
 choco install -y curl 
-choco install -y sysinternals
 
 curl.exe -L -o wix.exe https://github.com/wixtoolset/wix3/releases/download/wix3111rtm/wix311.exe 
 curl.exe -L -o python.msi https://www.python.org/ftp/python/2.4.4/python-2.4.4.msi
@@ -29,6 +28,7 @@ cp -recurse .\protobuf\protobuf-${protobuf_ver}\src\ C:\protobuf\
 Expand-Archive -Force .\protoc.zip -DestinationPath C:\protobuf\
 
 Start-Process -NoNewWindow -Wait -FilePath msiexec.exe -ArgumentList  "/l*v", "python.log", "/passive", "/i", "python.msi", "TARGETDIR=C:\Python24", "ALLUSERS=1"
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:\Python24", [EnvironmentVariableTarget]::Machine)
 $env:PATH = "C:\Python24;$env:PATH"
 
 
@@ -48,3 +48,5 @@ Start-Process -NoNewWindow -Wait -FilePath .\wix.exe -ArgumentList  "/l*v", "wix
 Expand-Archive -Force .\wtl.zip -DestinationPath C:\wtl
 Expand-Archive -Force .\atlserver.zip -DestinationPath C:\atl
 Expand-Archive -Force .\swtoolkit.zip -DestinationPath C:\
+
+new-itemproperty -path HKLM:\SOFTWARE\Wow6432Node\Brave\UpdateDev\ -name TestSource -value ossdev -force
