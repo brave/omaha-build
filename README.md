@@ -1,4 +1,4 @@
-WIP, this may not work for you currently.
+This will be archived soon, see https://github.com/brave/omaha-build/issues/5
 
 Note: You will need packer >= 1.2.3 to avoid an issue where imported vagrant box's are empty
 
